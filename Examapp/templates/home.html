@@ -1,0 +1,142 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Examination System</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(to right,#000000,#434343);
+        }
+
+        .container{
+            width:500px;
+            background:rgba(255,255,255,0.95);
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0px 0px 20px rgba(0,0,0,0.5);
+            text-align:center;
+        }
+
+        .title{
+            color:#222;
+            margin-bottom:30px;
+            font-size:32px;
+        }
+
+        .btn{
+            width:100%;
+            padding:14px;
+            margin:10px 0;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:bold;
+            color:white;
+            transition:0.3s;
+        }
+
+        .question-btn{
+            background:#007bff;
+        }
+
+        .student-btn{
+            background:#28a745;
+        }
+
+        .login-btn{
+            background:#6f42c1;
+        }
+
+        .result-btn{
+            background:#fd7e14;
+        }
+
+        .score-btn{
+            background:#dc3545;
+        }
+
+        .test-btn{
+            background:#20c997;
+        }
+
+        .btn:hover{
+            transform:scale(1.03);
+            opacity:0.9;
+        }
+
+        hr{
+            margin:10px 0;
+            border:1px solid #ddd;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">📚 Online Examination System</h1>
+
+    <form method="GET">
+
+        <input type="submit"
+               value="📝 Question Operations"
+               class="btn question-btn"
+               formaction="/Examapp/givemequestioncurd/">
+
+        
+
+        <input type="submit"
+               value="🔐 Student Login"
+               class="btn login-btn"
+               formaction="/Examapp/givemelogin/">
+
+        <input type="submit"
+               value="👨‍🎓 Student Operations"
+               class="btn student-btn"
+               formaction="/Examapp/givemestudentcurd/">
+
+        <input type="submit"
+               value="📊 View All Results"
+               class="btn result-btn"
+               formaction="/Examapp/getallresultpage/">
+
+        <input type="submit"
+               value="🎯 My Result"
+               class="btn score-btn"
+               formaction="/Examapp/score/">
+
+        <input type="submit"
+               value="🚀 Start Test"
+               class="btn test-btn"
+               formaction="/Examapp/subject/">
+
+    </form>
+
+</div>
+
+</body>
+</html>
+```

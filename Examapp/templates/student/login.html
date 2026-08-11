@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+
+    {% load static %}
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .login-container{
+            width:400px;
+            background-image:url('https://i.pinimg.com/736x/37/ff/06/37ff06be9369a9056cb649eeb4f9140a.jpg');
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,0,0,0.4);
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:25px;
+            color:#2c3e50;
+        }
+
+        .home-link{
+            display:block;
+            text-align:center;
+            margin-bottom:20px;
+            text-decoration:none;
+            color:#007bff;
+            font-weight:bold;
+        }
+
+        .home-link:hover{
+            color:#0056b3;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        .form-group input{
+            width:100%;
+            padding:10px;
+            border:2px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+        }
+
+        .form-group input:focus{
+            outline:none;
+            border-color:#007bff;
+        }
+
+        .button-group{
+            display:flex;
+            justify-content:space-between;
+            margin-top:20px;
+        }
+
+        .btn{
+            padding:10px 18px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+            transition:0.3s;
+        }
+
+        .login-btn{
+            background:#28a745;
+            color:white;
+        }
+
+        .signup-btn{
+            background:#007bff;
+            color:white;
+        }
+
+        .btn:hover{
+            transform:scale(1.05);
+            opacity:0.9;
+        }
+
+        .message{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            color:red;
+            font-weight:bold;
+            font-size:16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h2 class="title">🔐 Student Login</h2>
+
+        <a href="/Examapp/" class="home-link">
+            🏠 Back to Home
+        </a>
+
+        <form method="GET" action="/Examapp/login/">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       placeholder="Enter your username"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password"
+                       name="password"
+                       placeholder="Enter your password"
+                       required>
+            </div>
+
+            <div class="button-group">
+                <button type="submit"
+                        formaction="/Examapp/givemeregister/"
+                        class="btn signup-btn">
+                    Sign Up
+                </button>
+
+                <button type="submit"
+                        class="btn login-btn">
+                    Sign In
+                </button>
+
+                
+
+            </div>
+
+            {% if msg %}
+            <span class="message">
+                {{ msg }}
+            </span>
+            {% endif %}
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>

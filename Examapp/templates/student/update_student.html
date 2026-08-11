@@ -1,0 +1,128 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background-repeat:no-repeat;
+            background-size:cover;
+        }
+
+        .container{
+            width:500px;
+            margin:80px auto;
+            
+            background-image:url('https://i.pinimg.com/736x/10/fe/8a/10fe8ad1193ca8eb0cbd560f8e6a9d3c.jpg');
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0px 0px 15px black;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+            color:black;
+        }
+
+        .back{
+            text-decoration:none;
+            font-weight:bold;
+            color:black;
+        }
+
+        label{
+            font-weight:bold;
+            display:block;
+            margin-top:15px;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            border:2px solid #444;
+            border-radius:5px;
+        }
+
+        .btn{
+            width:100%;
+            padding:12px;
+            margin-top:20px;
+            background:black;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+            font-weight:bold;
+        }
+
+        .btn:hover{
+            background:#333;
+        }
+
+        .msg{
+            margin-top:20px;
+            text-align:center;
+            font-weight:bold;
+            color:white;
+            font-size:18px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/Examapp/givemestudentcurd/" class="back">
+        ← Student Operations
+    </a>
+
+    <h2>Update Student</h2>
+
+    <form method="GET" action="/Examapp/updatestudent/">
+
+        <label>Username</label>
+        <input type="text"
+               name="username"
+               value="{{ udata.username|default:'' }}"
+               placeholder="Enter Username"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               value="{{ udata.password|default:'' }}"
+               placeholder="Enter Password"
+               required>
+
+        <button type="submit" class="btn">
+            Update Student
+        </button>
+
+    </form>
+
+    {% if msg %}
+    <div class="msg">
+        {{ msg }}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
+```

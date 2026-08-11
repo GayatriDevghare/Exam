@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student CRUD</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body style="background-image:url('https://cdn.vectorstock.com/i/500p/13/64/school-banner-with-student-vector-23061364.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;">
+<
+
+<form method="GET"
+    style="margin-left:10%; margin-top:7%; margin-right:10%; color:black;">
+
+    <div style="padding:50px 60px 20px 60px;">
+
+        <!-- Student Name -->
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Student Name</label>
+            <div class="col-sm-6">
+                <input type="text"
+                    class="form-control"
+                    name="username"
+                    value="{{ udata.username }}"
+                    style="border:solid black 2px">
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-6">
+                <input type="password"
+                       class="form-control"
+                       name="password"
+                       value="{{ udata.password }}"
+                       style="border:solid black 2px">
+            </div>
+        </div>
+
+        <br>
+
+        <!-- Buttons -->
+        <button type="submit"
+                class="btn btn-info"
+                formaction="/Examapp/"
+                style="background-color:blue;">
+            Home Page
+        </button>
+        
+        <button type="submit"
+                class="btn btn-warning"
+                formaction="/Examapp/addstudent/" 
+                style="background-color:orange;">
+            Add Student
+        </button>
+
+        
+
+        <button type="submit"
+                class="btn btn-info"
+                formaction="/Examapp/updatestudent/"
+                style="background-color:pink;">
+            Update Student
+        </button>
+
+        <button type="submit"
+                class="btn btn-primary"
+                formaction="/Examapp/deletestudent/"
+                style="background-color:red;">
+            Delete Student
+        </button>
+
+        <button type="submit"
+                class="btn btn-success"
+                formaction="/Examapp/showallstudent/">
+            Show All Student
+        </button>
+
+        <br><br>
+
+        <center><span>{{ msg }}</span></center>
+
+    </div>
+</form>
+
+</body>
+</html>
