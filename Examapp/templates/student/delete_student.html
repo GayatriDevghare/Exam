@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Student</title>
+
+```
+{% load static %}
+
+<style>
+
+    body{
+        margin:0;
+        font-family:Arial, sans-serif;
+        background-repeat:no-repeat;
+        background-size:cover;
+    }
+
+    .container{
+        width:450px;
+        margin:80px auto;
+        background-image:url('https://img.magnific.com/free-photo/flat-lay-clipboards-with-copy-space_23-2148219259.jpg?semt=ais_hybrid&w=740&q=80');
+        background-size:100%;
+        box-shadow:0px 0px 15px black;
+    }
+
+    .back-btn{
+        text-decoration:none;
+        font-weight:bold;
+        color:black;
+    }
+
+    h2{
+        text-align:center;
+        margin-bottom:25px;
+    }
+
+    label{
+        display:block;
+        font-weight:bold;
+        margin-top:10px;
+    }
+
+    input{
+        width:100%;
+        padding:10px;
+        margin-top:5px;
+        border:2px solid #555;
+        border-radius:5px;
+        box-sizing:border-box;
+    }
+
+    .delete-btn{
+        width:100%;
+        padding:12px;
+        margin-top:20px;
+        border:none;
+        border-radius:5px;
+        background:#dc3545;
+        color:white;
+        font-size:16px;
+        cursor:pointer;
+    }
+
+    .delete-btn:hover{
+        background:#b02a37;
+    }
+
+    .message{
+        text-align:center;
+        margin-top:20px;
+        font-size:18px;
+        font-weight:bold;
+    }
+
+    .success{
+        color:green;
+    }
+
+    .error{
+        color:red;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="container">
+
+    <a href="/Examapp/givemestudentcurd/" class="back-btn">
+        ← Student Operations
+    </a>
+
+    <h2>Delete Student</h2>
+
+    <form method="GET" action="/Examapp/deletestudent/">
+
+        <label>Username</label>
+        <input type="text"
+               name="username"
+               placeholder="Enter Username"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               placeholder="Enter Password">
+
+        <button type="submit" class="delete-btn">
+            🗑 Delete Student
+        </button>
+
+    </form>
+
+    {% if msg %}
+    <div class="message">
+        {{ msg }}
+    </div>
+    {% endif %}
+
+</div>
+```
+
+</body>
+</html>

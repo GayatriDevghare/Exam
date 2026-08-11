@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+
+    {% load static %}
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background-repeat:no-repeat;
+            background-size:cover;
+            background-position:center;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .register-container{
+            width:420px;
+            background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3cQjml767G7iNqfvt9UHDyLbXOftWpLOcyg&s');
+            background-size:cover;
+            padding:35px;
+            border-radius:15px;
+            box-shadow:0 0 20px rgba(0,0,0,0.4);
+        }
+
+        .title{
+            text-align:center;
+            margin-bottom:25px;
+            color:#2c3e50;
+        }
+
+        .home-link{
+            display:block;
+            text-align:center;
+            margin-bottom:20px;
+            text-decoration:none;
+            font-weight:bold;
+            color:#007bff;
+        }
+
+        .home-link:hover{
+            color:#0056b3;
+        }
+
+        .form-group{
+            margin-bottom:20px;
+        }
+
+        .form-group label{
+            display:block;
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#333;
+        }
+
+        .form-group input{
+            width:100%;
+            padding:10px;
+            border:2px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+        }
+
+        .form-group input:focus{
+            outline:none;
+            border-color:#28a745;
+        }
+
+        .register-btn{
+            width:100%;
+            padding:12px;
+            background:#28a745;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .register-btn:hover{
+            background:#218838;
+            transform:scale(1.02);
+        }
+
+        .signup-btn{
+            width:100%;
+            padding:12px;
+            background:#28a745;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        .signup-btn:hover{
+            background:#218838;
+            transform:scale(1.02);
+        }
+
+        .message{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            font-size:16px;
+            font-weight:bold;
+            color:red;
+        }
+
+        .error{
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <h2 class="title">📝 Student Registration</h2>
+
+        <a href="/Examapp/" class="home-link">
+            🏠 Back to Home
+        </a>
+
+        <form method="GET" action="/Examapp/register/">
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text"
+                       name="username"
+                       placeholder="Enter Username"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password"
+                       name="password"
+                       placeholder="Enter Password"
+                       required>
+            </div>
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+            <br><br>
+
+            <div class="button-group">
+                <button type="submit"
+                        formaction="/Examapp/givemelogin/"
+                        class="btn signup-btn">
+                    Sign In
+                </button>
+
+            {% if msg %}
+            <span class="message">
+                {{ msg }}
+            </span>
+            {% endif %}
+
+        </form>
+
+    </div>
+
+</body>
+</html>

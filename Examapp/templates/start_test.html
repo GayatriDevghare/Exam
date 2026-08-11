@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Question</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <style>
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .logout-btn a {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+
+<body style="text-align:center;
+        background-image:url('https://rare-gallery.com/uploads/posts/500403-vector.jpg');
+        background-size:cover;
+        font-family:Arial,sans-serif;">
+
+        
+<div class="exam-container">
+
+    <header style="margin-top:2%">
+        <div class="header-top">
+
+            <span class="username">
+                👤 {{ request.session.username }}
+            </span>
+
+            <br><br>
+
+            <div class="logout-btn">
+                <a href="/Examapp/logoutuser/"
+                style="background:black; padding:8px 12px; border-radius:5px;">
+                    Logout
+                </a>
+            </div>
+
+            <br>
+
+            <span class="message">{{ msg }}</span>
+        </div>
+
+        <hr style="width:50%;">
+    </header>
+
+    <main>
+
+        <form method="GET">
+
+```
+<input type="hidden"
+    name="qno"
+    value="{{ question.qno }}">
+
+<input type="hidden"
+    name="answer"
+    value="{{ question.ans }}">
+
+<div class="question-box" style="padding:10px;">
+
+    <h3>{{ question.qtext }}</h3>
+
+    <br>
+
+    <label>
+        <input type="radio" name="op" value="op1" required>
+        {{ question.op1 }}
+    </label>
+    <br><br>
+
+    <label>
+        <input type="radio" name="op" value="op2">
+        {{ question.op2 }}
+    </label>
+    <br><br>
+
+    <label>
+        <input type="radio" name="op" value="op3">
+        {{ question.op3 }}
+    </label>
+    <br><br>
+
+    <label>
+        <input type="radio" name="op" value="op4">
+        {{ question.op4 }}
+    </label>
+
+</div>
+
+<br>
+
+<div class="nav-buttons">
+
+    <input type="submit"
+        value="⏮ Previous"
+        formaction="/Examapp/previousquestion/">
+
+    <input type="submit"
+        value="⏭ Next"
+        formaction="/Examapp/nextquestion/">
+
+    <input type="submit"
+        value="⏹ End Exam"
+        formaction="/Examapp/endtest/">
+
+</div>
+```
+
+</form>
+
+
+    </main>
+
+</div>
+
+</body>
+</html>

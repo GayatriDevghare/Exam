@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+
+    <style>
+
+        body{
+            background-repeat:no-repeat;
+            background-size:cover;
+            font-family:Arial, sans-serif;
+        }
+
+        .container{
+            width:400px;
+            margin:100px auto;
+            top margin:5px;
+            background-image:url('https://i.pinimg.com/736x/2b/f5/c8/2bf5c81893608c213473545c94e6a3f6.jpg');
+            padding:20px;
+            border-radius:10px;
+            background-size:cover;
+            box-shadow:0px 0px 15px black;
+        }
+
+        h2{
+            text-align:center;
+            margin-bottom:25px;
+        }
+
+        label{
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            margin-top:5px;
+            margin-bottom:15px;
+            border:1px solid gray;
+            border-radius:5px;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:green;
+            color:white;
+            border:none;
+            border-radius:5px;
+            font-size:16px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:darkgreen;
+        }
+
+        .msg{
+            display:block;
+            text-align:center;
+            margin-top:15px;
+            font-weight:bold;
+            color:red;
+        }
+
+        .back{
+            text-decoration:none;
+            display:block;
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <a href="/Examapp/givemestudentcurd/" class="back">
+        ← Student Operations
+    </a>
+
+    <h2>Add Student</h2>
+
+    <form method="GET" action="/Examapp/addstudent/">
+
+        <label>Username</label>
+        <input type="text"
+               name="username"
+               placeholder="Enter Username"
+               required>
+
+        <label>Password</label>
+        <input type="password"
+               name="password"
+               placeholder="Enter Password"
+               required>
+
+        <button type="submit">
+            Add Student
+        </button>
+
+        <span class="msg">
+            {{ msg }}
+        </span>
+
+    </form>
+
+</div>
+
+</body>
+</html>
+

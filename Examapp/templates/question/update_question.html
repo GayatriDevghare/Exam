@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Question</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+</head>
+
+<style>
+.container{
+    width:650px;
+    margin:40px auto;
+    background:rgba(255,255,255,0.9);
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 10px black;
+}
+
+h2{
+    text-align:center;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.form-group input{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.button-container{
+    text-align:center;
+    margin-top:20px;
+}
+
+.view-btn,
+.update-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    color:white;
+    margin:5px;
+}
+
+.view-btn{
+    background:#007bff;
+}
+
+.update-btn{
+    background:#28a745;
+}
+
+.message{
+    text-align:center;
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    color:green;
+}
+```
+</style>
+
+<body style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA6-zjwuNu9Jvi-3WzXkm-oD6122-6Maj8hg&s'); background-repeat: no-repeat; background-size: cover;">
+
+    <nav style="margin-left: 30%; margin-top: 2%;">
+        <a href="/Examapp/giveaddquestion/">Add Question</a> &nbsp;&nbsp;
+        <a href="/Examapp/giveviewquestion/">View Question</a> &nbsp;&nbsp;
+        <a href="/Examapp/giveupdatequestion/">Update Question</a> &nbsp;&nbsp;
+        <a href="/Examapp/givedeletequestion/">Delete Question</a> &nbsp;&nbsp;
+        <a href="/Examapp/givemeshowallquestion/">Show All Questions</a> &nbsp;&nbsp;
+        <a href="/Examapp/">Home Page</a>
+    </nav>
+
+    <hr>
+
+   ```html
+<form method="GET">
+
+<div class="container">
+
+    <h2>Update Question</h2>
+
+    <div class="form-group">
+        <label>Question No</label>
+        <input type="number" name="qno"
+               value="{{ qdata.qno|default:'' }}"
+               required>
+    </div>
+
+    <div class="form-group">
+        <label>Question Text</label>
+        <input type="text" name="qtext"
+               value="{{ qdata.qtext|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Option 1</label>
+        <input type="text" name="op1"
+               value="{{ qdata.op1|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Option 2</label>
+        <input type="text" name="op2"
+               value="{{ qdata.op2|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Option 3</label>
+        <input type="text" name="op3"
+               value="{{ qdata.op3|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Option 4</label>
+        <input type="text" name="op4"
+               value="{{ qdata.op4|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Subject</label>
+        <input type="text" name="subject"
+               value="{{ qdata.subject|default:'' }}">
+    </div>
+
+    <div class="form-group">
+        <label>Correct Answer</label>
+        <input type="text" name="answer"
+               value="{{ qdata.ans|default:'' }}">
+    </div>
+
+    <div class="button-container">
+
+        <button type="submit"
+                formaction="/Examapp/viewquestion/"
+                class="view-btn">
+            🔍 View Question
+        </button>
+
+        <button type="submit"
+                formaction="/Examapp/updatequestion/"
+                class="update-btn">
+            ✏️ Update Question
+        </button>
+
+    </div>
+
+    <div class="message">
+        {{ msg }}
+    </div>
+
+</div>
+
+</form>
+```
+
+
+</body>
+
+</html>

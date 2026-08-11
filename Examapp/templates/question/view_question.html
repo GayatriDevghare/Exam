@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Question</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/questions.css' %}">
+
+    <style>
+
+        body{
+            background-image:url('https://static.vecteezy.com/system/resources/previews/014/324/755/non_2x/white-question-mark-on-background-free-space-for-business-or-educational-design-banner-illustration-free-photo.jpg');
+            background-repeat:no-repeat;
+            background-size:cover;
+            font-family:Arial,sans-serif;
+        }
+
+        nav{
+            text-align:center;
+            margin-top:20px;
+        }
+
+        nav a{
+            text-decoration:none;
+            color:black;
+            font-weight:bold;
+            margin:10px;
+        }
+
+        .container{
+            width:650px;
+            margin:50px auto;
+            background:rgba(255,255,255,0.9);
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0px 0px 10px black;
+        }
+
+        h2{
+            text-align:center;
+            color:#333;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #ccc;
+        }
+
+        .label{
+            font-weight:bold;
+            width:150px;
+        }
+
+        .btn-container{
+            text-align:center;
+            margin-top:25px;
+        }
+
+        .btn{
+            padding:10px 20px;
+            border:none;
+            border-radius:5px;
+            color:white;
+            cursor:pointer;
+            margin:5px;
+            font-size:15px;
+        }
+
+        .delete-btn{
+            background:red;
+        }
+
+        .back-btn{
+            background:#007bff;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+    <a href="/Examapp/giveaddquestion/">Add Question</a>
+    <a href="/Examapp/giveviewquestion/">View Question</a>
+    <a href="/Examapp/giveupdatequestion/">Update Question</a>
+    <a href="/Examapp/givedeletequestion/">Delete Question</a>
+    <a href="/Examapp/givemeshowallquestion/">Show All Questions</a>
+    <a href="/Examapp/">Home Page</a>
+</nav>
+
+<hr>
+
+{% if qdata %}
+
+<form method="GET">
+
+<div class="container">
+
+    <h2>Question Details</h2>
+
+    <table>
+
+        <tr>
+            <td class="label">Question No</td>
+            <td>{{ qdata.qno }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Question</td>
+            <td>{{ qdata.qtext }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Option 1</td>
+            <td>{{ qdata.op1 }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Option 2</td>
+            <td>{{ qdata.op2 }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Option 3</td>
+            <td>{{ qdata.op3 }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Option 4</td>
+            <td>{{ qdata.op4 }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Subject</td>
+            <td>{{ qdata.subject }}</td>
+        </tr>
+
+        <tr>
+            <td class="label">Correct Answer</td>
+            <td>{{ qdata.ans }}</td>
+        </tr>
+
+    </table>
+
+    <input type="hidden" name="qno" value="{{ qdata.qno }}">
+    <input type="hidden" name="subject" value="{{ qdata.subject }}">
+
+    <div class="btn-container">
+
+        <button type="submit"
+                formaction="/Examapp/deletequestion/"
+                class="btn delete-btn">
+            🗑 Delete Question
+        </button>
+
+        <button type="button"
+                onclick="window.location.href='/Examapp/givedeletequestion/'"
+                class="btn back-btn">
+            ⬅ Go Back
+        </button>
+
+    </div>
+
+</div>
+
+</form>
+
+{% else %}
+
+<h2 style="text-align:center;color:red;">
+    No Question Found
+</h2>
+
+{% endif %}
+
+</body>
+</html>

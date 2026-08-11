@@ -1,0 +1,148 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Result</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        {% comment %} body{
+            background-image: url('https://pics.craiyon.com/2023-09-14/c60b8e0daee6412b80111b7ccc8b3381.webp');
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } {% endcomment %}
+
+        .container{
+            width: 85%;
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1{
+            color: #4B0082;
+            margin-bottom: 20px;
+        }
+
+        .score-box{
+            background: #4B0082;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        table, th, td{
+            border: 2px solid #6a0dad;
+        }
+
+        th{
+            background-color: #6a0dad;
+            color: white;
+            padding: 12px;
+        }
+
+        td{
+            padding: 10px;
+            background-color: #ffffff;
+        }
+
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+
+        .no-data{
+            color: red;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .home-btn{
+            margin-top: 25px;
+        }
+
+        .home-btn a{
+            text-decoration: none;
+            background-color: #4B0082;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .home-btn a:hover{
+            background-color: #6a0dad;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Exam Result</h1>
+
+        <div class="score-box">
+            Your Score: {{ finalscore }}
+        </div>
+
+        {% if response %}
+
+        <table>
+            <tr>
+                <th>Question No</th>
+                <th>Question</th>
+                <th>Your Answer</th>
+                <th>Correct Answer</th>
+            </tr>
+
+            {% for ans in response %}
+            <tr>
+                <td>{{ ans.0 }}</td>
+                <td>{{ ans.1 }}</td>
+                <td>{{ ans.2 }}</td>
+                <td>{{ ans.3 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% else %}
+
+        <div class="no-data">
+            Thank You for taking the test.
+        </div>
+
+        {% endif %}
+
+        <div class="home-btn">
+            <a href="/Examapp/">Back to Home</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
+```

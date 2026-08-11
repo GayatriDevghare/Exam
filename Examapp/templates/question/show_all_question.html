@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Question Bank</title>
+
+<style>
+
+body{
+    background-image:url('https://t3.ftcdn.net/jpg/16/10/54/74/360_F_1610547467_jXwpPArVBxpu30msYYiZadgf9TxCb6l2.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
+    font-family:Arial,sans-serif;
+}
+
+nav{
+    text-align:center;
+    margin-top:20px;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    margin:10px;
+}
+
+nav a:hover{
+    color:yellow;
+}
+
+.heading{
+    text-align:center;
+    color:white;
+    margin-top:20px;
+}
+
+.subject-title{
+    text-align:center;
+    width:300px;
+    margin:30px auto;
+    padding:10px;
+    background:blue;
+    color:white;
+    border-radius:10px;
+}
+
+.table-container{
+    width:95%;
+    margin:auto;
+    overflow-x:auto;
+}
+
+table{
+    width:95%;
+    border-collapse:collapse;
+    background:rgba(0,0,0,0.8);
+}
+
+table,th,td{
+    border:2px solid orange;
+}
+
+th{
+    background:#ff9800;
+    color:white;
+    padding:10px;
+}
+
+td{
+    color:white;
+    padding:10px;
+    text-align:center;
+}
+
+.no-data{
+    text-align:center;
+    color:red;
+    font-size:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+    <a href="/Examapp/giveaddquestion/">Add Question</a>
+    <a href="/Examapp/giveviewquestion/">View Question</a>
+    <a href="/Examapp/giveupdatequestion/">Update Question</a>
+    <a href="/Examapp/givedeletequestion/">Delete Question</a>
+    <a href="/Examapp/givemeshowallquestion/">Show All Questions</a>
+    <a href="/Examapp/">Home Page</a>
+</nav>
+
+<hr>
+
+<h1 class="heading">📚 Complete Question Bank</h1>
+
+{% if subjects %}
+
+    {% for subject_name, questions in subjects.items %}
+
+        <h2 class="subject-title">
+            {{ subject_name|upper }} QUESTIONS
+        </h2>
+
+        <div class="table-container">
+
+            <table>
+
+                <tr>
+                    <th>Q No</th>
+                    <th>Question</th>
+                    <th>Option 1</th>
+                    <th>Option 2</th>
+                    <th>Option 3</th>
+                    <th>Option 4</th>
+                    <th>Answer</th>
+                </tr>
+
+                {% for q in questions %}
+                <tr>
+                    <td>{{ q.qno }}</td>
+                    <td>{{ q.qtext }}</td>
+                    <td>{{ q.op1 }}</td>
+                    <td>{{ q.op2 }}</td>
+                    <td>{{ q.op3 }}</td>
+                    <td>{{ q.op4 }}</td>
+                    <td>{{ q.ans }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+<h2 class="no-data">
+    No Questions Available
+</h2>
+
+{% endif %}
+
+</body>
+</html>

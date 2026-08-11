@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show All Students</title>
+
+```
+{% load static %}
+
+<style>
+
+    body{
+        margin:0;
+        font-family:Arial, sans-serif;
+        background:linear-gradient(to right,#1e3c72,#2a5298);
+        background-size:cover;
+    }
+
+    .navbar{
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .navbar a{
+        text-decoration:none;
+        color:white;
+        font-weight:bold;
+        margin:10px;
+        padding:10px 15px;
+        border-radius:5px;
+        background:rgba(255,255,255,0.15);
+    }
+
+    .navbar a:hover{
+        background:white;
+        color:black;
+    }
+
+    .back-btn{
+        display:inline-block;
+        margin:20px;
+        text-decoration:none;
+        color:white;
+        font-weight:bold;
+        background:black;
+        padding:10px 15px;
+        border-radius:5px;
+    }
+
+    .title{
+        text-align:center;
+        color:white;
+        margin-top:10px;
+    }
+
+    table{
+        width:70%;
+        margin:30px auto;
+        border-collapse:collapse;
+        background:white;
+        box-shadow:0px 0px 15px rgba(0,0,0,0.4);
+    }
+
+    th{
+        background:#343a40;
+        color:white;
+        padding:12px;
+    }
+
+    td{
+        padding:10px;
+        text-align:center;
+        border:1px solid #ddd;
+    }
+
+    tr:nth-child(even){
+        background:#f2f2f2;
+    }
+
+    .delete-btn{
+        text-decoration:none;
+        background:#dc3545;
+        color:white;
+        padding:8px 12px;
+        border-radius:5px;
+    }
+
+    .delete-btn:hover{
+        background:purple;
+    }
+
+    .no-data{
+        text-align:center;
+        color:white;
+        font-size:20px;
+        margin-top:50px;
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="navbar">
+    <a href="/Examapp/givemeaddstudent/">➕ Add Student</a>
+    <a href="/Examapp/givemeviewstudent/">🔍 View Student</a>
+    <a href="/Examapp/givemeupdatestudent/">✏️ Update Student</a>
+    <a href="/Examapp/givemedeletestudent/">🗑 Delete Student</a>
+    <a href="/Examapp/showallstudent/">📋 Show All Students</a>
+    <a href="/Examapp/">🏠 Home</a>
+</div>
+
+<a href="/Examapp/givemestudentcurd/" class="back-btn">
+    ← Student Operations
+</a>
+
+<h2 class="title">All Registered Students</h2>
+
+{% if udata %}
+
+<table>
+    <tr>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Action</th>
+    </tr>
+
+    {% for ud in udata %}
+    <tr>
+        <td>{{ ud.username }}</td>
+        <td>{{ ud.password }}</td>
+        <td>
+            <a href="/Examapp/deleteusershowall/?username={{ ud.username }}"
+               class="delete-btn">
+                Delete
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% else %}
+
+<div class="no-data">
+    No Students Found
+</div>
+
+{% endif %}
+```
+
+</body>
+
+</html>
