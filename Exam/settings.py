@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["exam-4-j9kx.onrender.com"]
 
-CSRF_TRUSTED_ORIGINS=["https://exam-4-j9kx.onrender.com"]
+CSRF_TRUSTED_ORIGINS=["*"]
 
 
 
