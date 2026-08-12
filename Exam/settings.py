@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ["*"]
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["exam-4-j9kx.onrender.com"]
 
 
 
