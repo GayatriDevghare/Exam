@@ -2,137 +2,177 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Exam Question</title>
 
-    <link rel="stylesheet" href="/static/css/style.css">
-
     <style>
-        input[type="submit"] {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(
+                to right,
+                #87CEEB,
+                #000080
+            );
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+        }
+
+        .exam-container {
+
+            width: 700px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 20px rgba(0,0,0,0.4);
+
+        }
+
+        .header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 20px;
+        }
+
+        .question-box {
+
+            padding: 25px;
+
+            border: 2px solid #000080;
+
+            border-radius: 10px;
+
+        }
+
+        .question {
+
+            font-size: 22px;
+
+            font-weight: bold;
+
+            margin-bottom: 25px;
+
+        }
+
+        .option {
+
+            display: block;
+
+            padding: 12px;
+
+            margin: 10px 0;
+
+            background: #f1f1f1;
+
+            border-radius: 8px;
+
             cursor: pointer;
-            background-color: black;
-            color: white;
+
+        }
+
+        .nav-buttons {
+
+            margin-top: 25px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+        }
+
+        .btn {
+
+            padding: 12px 20px;
+
             border: none;
-            border-radius: 5px;
-        }
 
-        input[type="submit"]:hover {
-            background-color: white;
-            color: black;
-        }
+            border-radius: 8px;
 
-        .logout-btn a {
-            text-decoration: none;
+            background: #000080;
+
             color: white;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
         }
+
+        .end-btn {
+
+            background: #dc3545;
+
+        }
+
     </style>
+
 </head>
 
-<body style="text-align:center;
-        background-image:url('https://rare-gallery.com/uploads/posts/500403-vector.jpg');
-        background-size:cover;
-        font-family:Arial,sans-serif;">
+<body>
 
-        
 <div class="exam-container">
 
-    <header style="margin-top:2%">
-        <div class="header-top">
+    <div class="header">
 
-            <span class="username">
-                👤 {{ request.session.username }}
-            </span>
-
-            <br><br>
-
-            <div class="logout-btn">
-                <a href="/Examapp/logoutuser/"
-                style="background:black; padding:8px 12px; border-radius:5px;">
-                    Logout
-                </a>
-            </div>
-
-            <br>
-
-            <span class="message">{{ msg }}</span>
+        <div>
+            👤 {{ request.session.username }}
         </div>
 
-        <hr style="width:50%;">
-    </header>
+        <div>
+            📚 {{ request.session.subject }}
+        </div>
 
-    <main>
+    </div>
 
-        <form method="GET">
-
-```
-<input type="hidden"
-    name="qno"
-    value="{{ question.qno }}">
-
-<input type="hidden"
-    name="answer"
-    value="{{ question.ans }}">
-
-<div class="question-box" style="padding:10px;">
+    <hr>
+<form method="POST" action="{% url 'next_question' %}">
+    {% csrf_token %}
 
     <h3>{{ question.qtext }}</h3>
 
-    <br>
-
     <label>
-        <input type="radio" name="op" value="op1" required>
+        <input type="radio" name="answer" value="1">
         {{ question.op1 }}
     </label>
-    <br><br>
 
     <label>
-        <input type="radio" name="op" value="op2">
+        <input type="radio" name="answer" value="2">
         {{ question.op2 }}
     </label>
-    <br><br>
 
     <label>
-        <input type="radio" name="op" value="op3">
+        <input type="radio" name="answer" value="3">
         {{ question.op3 }}
     </label>
-    <br><br>
 
     <label>
-        <input type="radio" name="op" value="op4">
+        <input type="radio" name="answer" value="4">
         {{ question.op4 }}
     </label>
 
-</div>
-
-<br>
-
-<div class="nav-buttons">
-
-    <input type="submit"
-        value="⏮ Previous"
-        formaction="/Examapp/previousquestion/">
-
-    <input type="submit"
-        value="⏭ Next"
-        formaction="/Examapp/nextquestion/">
-
-    <input type="submit"
-        value="⏹ End Exam"
-        formaction="/Examapp/endtest/">
-
-</div>
-```
-
+    <button type="submit">Next</button>
 </form>
-
-
-    </main>
-
 </div>
 
 </body>
+
 </html>

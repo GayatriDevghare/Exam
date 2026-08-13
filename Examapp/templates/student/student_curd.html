@@ -48,14 +48,14 @@
         <!-- Buttons -->
         <button type="submit"
                 class="btn btn-info"
-                formaction="/Examapp/"
+                formaction="{%url 'home'%}"
                 style="background-color:blue;">
             Home Page
         </button>
         
         <button type="submit"
                 class="btn btn-warning"
-                formaction="/Examapp/addstudent/" 
+                formaction="{% url 'add_user'%}" 
                 style="background-color:orange;">
             Add Student
         </button>
@@ -64,23 +64,21 @@
 
         <button type="submit"
                 class="btn btn-info"
-                formaction="/Examapp/updatestudent/"
+                formaction="{% url 'update_user'%}"
                 style="background-color:pink;">
             Update Student
         </button>
 
         <button type="submit"
                 class="btn btn-primary"
-                formaction="/Examapp/deletestudent/"
+                formaction="{% url 'delete_user'%}"
                 style="background-color:red;">
             Delete Student
         </button>
 
-        <button type="submit"
-                class="btn btn-success"
-                formaction="/Examapp/showallstudent/">
-            Show All Student
-        </button>
+        <a href="{% url 'show_all_users' %}" class="btn btn-success">
+    Show All Student
+</a>
 
         <br><br>
 

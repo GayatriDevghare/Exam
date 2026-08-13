@@ -94,7 +94,7 @@
     </div>
 
     <button type="submit"
-            formaction="/Examapp/viewquestion/"
+            formaction="{% url 'view_question' %}"
             class="btn search-btn">
         🔍 Search Question
     </button>
@@ -126,7 +126,7 @@
     </div>
 
     <button type="submit"
-            formaction="/Examapp/deletequestion/"
+            formaction="{%url 'delete_question' %}"
             class="btn delete-btn">
         🗑 Delete Question
     </button>

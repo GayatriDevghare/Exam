@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Student</title>
 
-```
 {% load static %}
 
 <style>
@@ -94,13 +93,13 @@
 ```
 <div class="container">
 
-    <a href="/Examapp/givemestudentcurd/" class="back-btn">
+    <a href="{%url 'student_curd'%}" class="back-btn">
         ← Student Operations
     </a>
 
     <h2>Delete Student</h2>
 
-    <form method="GET" action="/Examapp/deletestudent/">
+    <form method="GET" action="{%url 'delete_user'%}">
 
         <label>Username</label>
         <input type="text"
@@ -126,7 +125,7 @@
     {% endif %}
 
 </div>
-```
+
 
 </body>
 </html>

@@ -93,22 +93,21 @@
     }
 
 </style>
-```
 
 </head>
 
 <body>
 
-```
+
 <div class="container">
 
-    <a href="/Examapp/givemestudentcurd/" class="back-btn">
+    <a href="{%url 'student_curd'%}"class="back-btn">
         ← Student Operations
     </a>
 
     <h2>View Student</h2>
 
-    <form method="GET" action="/Examapp/showstudent/">
+    <form method="GET" action="{%url 'view_student_page'%}">
 
         <label>Username</label>
         <input type="text"
@@ -147,7 +146,7 @@
     {% endif %}
 
 </div>
-```
+
 
 </body>
 

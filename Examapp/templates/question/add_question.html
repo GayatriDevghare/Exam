@@ -105,18 +105,18 @@
 <body>
 
     <nav>
-        <a href="/Examapp/giveaddquestion/">Add Question</a>
-        <a href="/Examapp/giveviewquestion/">View Question</a>
-        <a href="/Examapp/giveupdatequestion/">Update Question</a>
-        <a href="/Examapp/givedeletequestion/">Delete Question</a>
-        <a href="/Examapp/givemeshowallquestion/">Show All Questions</a>
-        <a href="/Examapp/">Home Page</a>
+        <a href="{% url 'add_question_page' %}" >Add Question</a>
+        <a href="{% url 'view_question_page' %}">View Question</a>
+        <a href="{% url 'update_question_page' %}">Update Question</a>
+        <a href="{% url 'delete_question_page' %}">Delete Question</a>
+        <a href="{% url 'show_all_question_page' %}">Show All Questions</a>
+        <a href="{% url 'home' %}">Home Page</a>
     </nav>
 
     <hr>
 
-    <form method="GET" action="/Examapp/addquestion/">
-
+    <form method="POST" action="{% url 'add_question_page' %}">
+    {% csrf_token %}
         <div class="container">
 
             <h2>Add New Question</h2>
@@ -158,10 +158,18 @@
 
             <div class="form-group">
                 <label>Correct Answer</label>
-                <input type="text"
-                       name="answer"
-                       placeholder="op1 / op2 / op3 / op4"
-                       required>
+                <select name="ans" required>
+
+    <option value="">
+        -- Select Correct Answer --
+    </option>
+
+    <option value="op1">Option 1</option>
+    <option value="op2">Option 2</option>
+    <option value="op3">Option 3</option>
+    <option value="op4">Option 4</option>
+
+</select>
             </div>
 
             <button type="submit" class="btn">
@@ -178,4 +186,4 @@
 
 </body>
 </html>
-```
+

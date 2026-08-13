@@ -129,12 +129,12 @@
 <body>
 
     <nav>
-        <a href="/Examapp/giveaddquestion/">Add Question</a>
-        <a href="/Examapp/giveviewquestion/">View Question</a>
-        <a href="/Examapp/giveupdatequestion/">Update Question</a>
-        <a href="/Examapp/givedeletequestion/">Delete Question</a>
-        <a href="/Examapp/givemeshowallquestion/">Show All Questions</a>
-        <a href="/Examapp/">Home Page</a>
+        <a href="{% url 'add_question_page'%}" >Add Question</a>
+        <a href="{% url 'view_question_page'%}">View Question</a>
+        <a href="{% url 'update_question_page'%}">Update Question</a>
+        <a href="{% url 'delete_question_page'%}">Delete Question</a>
+        <a href="{% url 'show_all_question_page'%}">Show All Questions</a>
+        <a href="{% url 'home' %}">Home Page</a>
     </nav>
 
     <hr>
@@ -197,31 +197,31 @@
             <div class="button-container">
 
                 <button type="submit"
-                        formaction="/Examapp/addquestion/"
+                        formaction="{% url 'add_question_page'%}"
                         class="btn add-btn">
                     ➕ Add
                 </button>
 
                 <button type="submit"
-                        formaction="/Examapp/viewquestion/"
+                        formaction="{% url 'view_question_page'%}"
                         class="btn view-btn">
                     🔍 View
                 </button>
 
                 <button type="submit"
-                        formaction="/Examapp/updatequestion/"
+                        formaction="{% url 'update_question_page'%}"
                         class="btn update-btn">
                     ✏️ Update
                 </button>
 
                 <button type="submit"
-                        formaction="/Examapp/deletequestion/"
+                        formaction="{% url 'delete_question_page' %}"
                         class="btn delete-btn">
                     🗑 Delete
                 </button>
 
                 <button type="submit"
-                        formaction="/Examapp/givemeshowallquestion/"
+                        formaction="{% url 'show_all_question_page' %}"
                         class="btn show-btn">
                     📋 Show All
                 </button>

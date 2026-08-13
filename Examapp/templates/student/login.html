@@ -4,173 +4,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Student Login</title>
 
     {% load static %}
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Arial, sans-serif;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        body{
-            
-            background-repeat:no-repeat;
-            background-size:cover;
-            background-position:center;
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #667eea,
+                #764ba2
+            );
         }
 
-        .login-container{
-            width:400px;
-            background-image:url('https://i.pinimg.com/736x/37/ff/06/37ff06be9369a9056cb649eeb4f9140a.jpg');
-            padding:35px;
-            border-radius:15px;
-            box-shadow:0 0 20px rgba(0,0,0,0.4);
+        /* ================= LOGIN CONTAINER ================= */
+
+        .login-container {
+            width: 400px;
+            padding: 35px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.3);
+
+            text-align: left;
         }
 
-        .title{
-            text-align:center;
-            margin-bottom:25px;
-            color:#2c3e50;
+        /* ================= TITLE ================= */
+
+        .title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-size: 28px;
         }
 
-        .home-link{
-            display:block;
-            text-align:center;
-            margin-bottom:20px;
-            text-decoration:none;
-            color:#007bff;
-            font-weight:bold;
+        /* ================= HOME LINK ================= */
+
+        .home-link {
+            display: block;
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            text-decoration: none;
+
+            color: #007bff;
+            font-weight: bold;
+
+            transition: 0.3s;
         }
 
-        .home-link:hover{
-            color:#0056b3;
+        .home-link:hover {
+            color: #0056b3;
         }
 
-        .form-group{
-            margin-bottom:20px;
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 18px;
         }
 
-        .form-group label{
-            display:block;
-            margin-bottom:6px;
-            font-weight:bold;
-            color:#333;
+        .form-group label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: bold;
+            color: #333;
         }
 
-        .form-group input{
-            width:100%;
-            padding:10px;
-            border:2px solid #ccc;
-            border-radius:8px;
-            font-size:15px;
+        .form-group input {
+            width: 100%;
+
+            padding: 12px;
+
+            border: 2px solid #ccc;
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            transition: 0.3s;
         }
 
-        .form-group input:focus{
-            outline:none;
-            border-color:#007bff;
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+
+            box-shadow:
+                0 0 5px rgba(0, 123, 255, 0.3);
         }
 
-        .button-group{
-            display:flex;
-            justify-content:space-between;
-            margin-top:20px;
+        /* ================= BUTTON GROUP ================= */
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 25px;
         }
 
-        .btn{
-            padding:10px 18px;
-            border:none;
-            border-radius:8px;
-            cursor:pointer;
-            font-size:15px;
-            font-weight:bold;
-            transition:0.3s;
+        .btn {
+            flex: 1;
+
+            padding: 12px;
+
+            border: none;
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            transition: 0.3s;
         }
 
-        .login-btn{
-            background:#28a745;
-            color:white;
+        /* ================= LOGIN BUTTON ================= */
+
+        .login-btn {
+            background: #28a745;
+            color: white;
         }
 
-        .signup-btn{
-            background:#007bff;
-            color:white;
+        .login-btn:hover {
+            background: #218838;
+            transform: scale(1.03);
         }
 
-        .btn:hover{
-            transform:scale(1.05);
-            opacity:0.9;
+        /* ================= SIGNUP BUTTON ================= */
+
+        .signup-btn {
+            background: #007bff;
+            color: white;
         }
 
-        .message{
-            display:block;
-            text-align:center;
-            margin-top:20px;
-            color:red;
-            font-weight:bold;
-            font-size:16px;
+        .signup-btn:hover {
+            background: #0056b3;
+            transform: scale(1.03);
+        }
+
+        /* ================= MESSAGE ================= */
+
+        .message {
+            display: block;
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: red;
+
+            font-weight: bold;
+
+            font-size: 15px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 450px) {
+
+            .login-container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 
 <body>
 
     <div class="login-container">
 
-        <h2 class="title">🔐 Student Login</h2>
+        <!-- ================= TITLE ================= -->
 
-        <a href="/Examapp/" class="home-link">
+        <h2 class="title">
+            🔐 Student Login
+        </h2>
+
+
+        <!-- ================= HOME ================= -->
+
+        <a href="{% url 'home' %}" class="home-link">
             🏠 Back to Home
         </a>
 
-        <form method="GET" action="/Examapp/login/">
 
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text"
-                       name="username"
-                       placeholder="Enter your username"
-                       required>
-            </div>
+        <!-- ================= LOGIN FORM ================= -->
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password"
-                       name="password"
-                       placeholder="Enter your password"
-                       required>
-            </div>
+        <form method="POST" action="{% url 'login' %}">
 
-            <div class="button-group">
-                <button type="submit"
-                        formaction="/Examapp/givemeregister/"
-                        class="btn signup-btn">
-                    Sign Up
-                </button>
+    {% csrf_token %}
 
-                <button type="submit"
-                        class="btn login-btn">
-                    Sign In
-                </button>
+    <div class="form-group">
 
-                
+        <label for="username">
+            Username
+        </label>
 
-            </div>
+        <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter Username"
+            required
+        >
 
-            {% if msg %}
-            <span class="message">
-                {{ msg }}
-            </span>
-            {% endif %}
+    </div>
 
-        </form>
+
+    <div class="form-group">
+
+        <label for="password">
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Password"
+            required
+        >
+
+    </div>
+
+
+    <div class="button-group">
+
+        <!-- LOGIN -->
+        <button
+            type="submit"
+            class="btn login-btn">
+            🔐 Login
+        </button>
+
+
+        <!-- SIGN UP - NOT FORM SUBMIT -->
+        <a
+            href="{% url 'register_page' %}"
+            class="btn signup-btn">
+            📝 Sign Up
+        </a>
+
+    </div>
+
+
+    {% if msg %}
+        <span class="message">
+            {{ msg }}
+        </span>
+    {% endif %}
+
+</form>
 
     </div>
 

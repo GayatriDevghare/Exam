@@ -24,11 +24,17 @@ SECRET_KEY = 'django-insecure-8xhbvw*ysaz4l#xwtq+ljiy+h(a2afgq5)_r#w@7&co7wk)g%3
 
 
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "exam-4-j9kx.onrender.com",
+]
 
-CSRF_TRUSTED_ORIGINS=["exam-4-j9kx.onrender.com",]
+CSRF_TRUSTED_ORIGINS = [
+    "https://exam-4-j9kx.onrender.com",
+]
 
 
 

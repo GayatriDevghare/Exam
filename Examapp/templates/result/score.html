@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,8 +106,8 @@
         <h1>Exam Result</h1>
 
         <div class="score-box">
-            Your Score: {{ finalscore }}
-        </div>
+    Your Score: {{ score }}
+</div>
 
         {% if response %}
 
@@ -138,11 +138,11 @@
         {% endif %}
 
         <div class="home-btn">
-            <a href="/Examapp/">Back to Home</a>
+            <a href="{%url 'home'%}">Back to Home</a>
         </div>
 
     </div>
 
 </body>
 </html>
-```
+

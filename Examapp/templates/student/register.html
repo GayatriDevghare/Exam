@@ -135,11 +135,13 @@
 
         <h2 class="title">📝 Student Registration</h2>
 
-        <a href="/Examapp/" class="home-link">
+        <a href="{% url 'home'%}" class="home-link">
             🏠 Back to Home
         </a>
 
-        <form method="GET" action="/Examapp/register/">
+        <form method="POST" action="{% url 'register' %}">
+
+    {% csrf_token %}
 
             <div class="form-group">
                 <label>Username</label>
@@ -164,7 +166,7 @@
 
             <div class="button-group">
                 <button type="submit"
-                        formaction="/Examapp/givemelogin/"
+                        formaction="{%url 'login_page' %}"
                         class="btn signup-btn">
                     Sign In
                 </button>

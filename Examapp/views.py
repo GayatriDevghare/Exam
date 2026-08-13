@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import ExamInfo, UserData, Result
 from collections import defaultdict
 
+
+
 from django.contrib.auth import authenticate, login
 
 
@@ -59,29 +61,45 @@ def Give_Me_ShowAllQuestion_Page(request):
 
 def AddQuestions(request):
     
-    try:
+    if request.method == "POST":
+
+        qno = request.POST.get("qno")
+        qtext = request.POST.get("qtext")
+        op1 = request.POST.get("op1")
+        op2 = request.POST.get("op2")
+        op3 = request.POST.get("op3")
+        op4 = request.POST.get("op4")
+        subject = request.POST.get("subject")
+        ans = request.POST.get("ans")
+
+        # Check duplicate question number
+
+        if ExamInfo.objects.filter(qno=qno).exists():
+
+            return render(
+                request,
+                "question/add_question.html",
+                {
+                    "msg": f"Question number {qno} already exists."
+                }
+            )
 
         ExamInfo.objects.create(
-            qno=request.GET.get("qno"),
-            qtext=request.GET.get("qtext"),
-            op1=request.GET.get("op1"),
-            op2=request.GET.get("op2"),
-            op3=request.GET.get("op3"),
-            op4=request.GET.get("op4"),
-            subject=request.GET.get("subject"),
-            ans=request.GET.get("answer")
+            qno=qno,
+            qtext=qtext,
+            op1=op1,
+            op2=op2,
+            op3=op3,
+            op4=op4,
+            subject=subject,
+            ans=ans
         )
 
-        msg = "✅ Question Added Successfully"
-
-    except:
-
-        msg = "❌ Question Number Already Exists"
+        return redirect("show_all_question_page")
 
     return render(
         request,
-        "question/add_question.html",
-        {"msg": msg}
+        "question/add_question.html"
     )
 
 
@@ -177,23 +195,39 @@ def GiveMeScorePage(request):
     return render(request, "result/score.html")
 
 
+
+
 # ---------------- USER ACTIONS ----------------
 
 
 
 def Register(request):
+    
+    if request.method == "POST":
 
-    username = request.GET.get("username")
-    password = request.GET.get("password")
+        username = request.POST.get("username", "").strip()
+        password = request.POST.get("password", "").strip()
 
-    if username and password:
-
-        if UserData.objects.filter(username=username).exists():
+        if not username or not password:
 
             return render(
                 request,
                 "student/register.html",
-                {"msg": "Username Already Exists"}
+                {
+                    "msg": "Username and password are required."
+                }
+            )
+
+        if UserData.objects.filter(
+            username=username
+        ).exists():
+
+            return render(
+                request,
+                "student/register.html",
+                {
+                    "msg": "Username already exists."
+                }
             )
 
         UserData.objects.create(
@@ -203,8 +237,10 @@ def Register(request):
 
         return render(
             request,
-            "student/register.html",
-            {"msg": "Registration Successful"}
+            "student/login.html",
+            {
+                "msg": "Registration successful. Please login."
+            }
         )
 
     return render(
@@ -212,31 +248,40 @@ def Register(request):
         "student/register.html"
     )
 
-
-
 def login(request):
     
-    username = request.GET.get("username")
-    password = request.GET.get("password")
+    if request.method == "POST":
 
-    try:
-        user = UserData.objects.get(
-            username=username,
-            password=password
-        )
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
-        request.session["username"] = username
+        try:
+            user = UserData.objects.get(
+                username=username,
+                password=password
+            )
 
-        return redirect('/Examapp/subject/')
+            request.session["username"] = username
 
-    except UserData.DoesNotExist:
+            print("Login successful:", username)
 
-        return render(
-            request,
-            "student/login.html",
-            {"msg": "Invalid Username or Password"}
-        )
+            # Go to subject selection page
+            return redirect("start_test_page")
 
+        except UserData.DoesNotExist:
+
+            return render(
+                request,
+                "student/login.html",
+                {
+                    "msg": "Invalid username or password"
+                }
+            )
+
+    return render(
+        request,
+        "student/login.html"
+    )
 
 def AddUser(request):
     
@@ -365,130 +410,239 @@ def DeleteUserForShowAllPage(request):
                     "msg": "Student Deleted Successfully"
                 })
 
-
-# ---------------- TEST FLOW ----------------
-
 def StartTestPage(request):
-    
-    subject = request.POST.get("subject")
-
-    questions = list(
-        ExamInfo.objects.filter(subject=subject)
-    )
-
-    if len(questions) == 0:
-        return render(
-            request,
-            "question/subject.html",
-            {"msg": "No Questions Found"}
-        )
-
-    request.session["subject"] = subject
-    request.session["index"] = 0
-    request.session["score"] = 0
-
-    qids = [q.qno for q in questions]
-    request.session["qids"] = qids
-    print("Username:", request.session.get("username"))
-    
-
     return render(
         request,
-        "start_test.html",
-        {"question": questions[0]}
+        "question/start_test_page.html"
     )
+# ---------------- TEST FLOW ----------------
+# def StartTestPage(request):
+    
+#     # ==============================
+#     # STEP 1: SHOW SUBJECT PAGE
+#     # ==============================
+#     if request.method == "GET":
+
+#         return render(
+#             request,
+#             "start_test.html"
+#         )
+
+#     # ==============================
+#     # STEP 2: SUBJECT SELECTED
+#     # ==============================
+#     if request.method == "POST":
+
+#         subject = request.POST.get("subject")
+
+#         print("Selected Subject:", subject)
+#         print("Username:", request.session.get("username"))
+
+#         if not subject:
+#             return render(
+#                 request,
+#                 "start_test.html",
+#                 {
+#                     "msg": "Please select a subject."
+#                 }
+#             )
+
+#         questions = list(
+#             ExamInfo.objects.filter(subject=subject)
+#         )
+
+#         if not questions:
+
+#             return render(
+#                 request,
+#                 "start_test.html",
+#                 {
+#                     "msg": f"No questions found for {subject}."
+#                 }
+#             )
+
+#         # Save exam information in session
+#         request.session["subject"] = subject
+#         request.session["index"] = 0
+#         request.session["score"] = 0
+
+#         qids = [q.qno for q in questions]
+
+#         request.session["qids"] = qids
+
+#         # First question
+#         return render(
+#             request,
+#             "question/start_question.html",
+#             {
+#                 "question": questions[0]
+#             }
+#         )
 
 
 def StartTest(request):
-    return render(request,
+    
+    if request.method == "POST":
+
+        subject = request.POST.get("subject")
+
+        questions = ExamInfo.objects.filter(
+            subject=subject
+        ).order_by("qno")
+
+        qids = list(
+            questions.values_list("qno", flat=True)
+        )
+
+        request.session["subject"] = subject
+        request.session["qids"] = qids
+        request.session["index"] = 0
+        request.session["score"] = 0
+
+        if not qids:
+            return render(
+                request,
+                "question/start_test_page.html",
+                {
+                    "msg": "No questions available for this subject."
+                }
+            )
+
+        question = ExamInfo.objects.get(qno=qids[0])
+
+        return render(
+            request,
             "start_test.html",
-            {"msg": "Login Successful"})
-    
-    
-
-
-
+            {
+                "question": question,
+                "index": 0,
+                "total": len(qids),
+            }
+        )
 def NextQuestion(request):
     
-    selected = request.GET.get("op")
-    correct = request.GET.get("answer")
-
+    qids = request.session.get("qids", [])
+    index = request.session.get("index", 0)
     score = request.session.get("score", 0)
 
-    if selected == correct:
-        score += 1
+    # Save answer
+    if request.method == "POST":
 
-    request.session["score"] = score
+        selected_answer = request.POST.get("answer")
 
-    index = request.session.get("index", 0)
-    qids = request.session.get("qids", [])
+        answer_map = {
+            "1": "op1",
+            "2": "op2",
+            "3": "op3",
+            "4": "op4",
+        }
 
+        selected_option = answer_map.get(selected_answer)
+
+        question = ExamInfo.objects.get(qno=qids[index])
+
+        print("Selected Answer:", selected_answer)
+        print("Selected Option:", selected_option)
+        print("Correct Answer:", question.ans)
+
+        if selected_option == question.ans:
+            score += 1
+            print("Answer Correct")
+        else:
+            print("Answer Wrong")
+
+        request.session["score"] = score
+
+    # Move to next question
     index += 1
-
-    if index >= len(qids):
-        return End_Test(request)
-
     request.session["index"] = index
+
+    # No more questions
+    if index >= len(qids):
+        return redirect("end_test")
 
     question = ExamInfo.objects.get(qno=qids[index])
 
     return render(
         request,
         "start_test.html",
-        {"question": question}
+        {
+            "question": question,
+            "index": index,
+            "total": len(qids),
+        }
     )
+    
 def PreviousQuestion(request):
     
-    if "index" not in request.session:
-        return redirect('/Examapp/subject/')
+    qids = request.session.get("qids", [])
+    index = request.session.get("index", 0)
 
-    index = request.session["index"]
+    if not qids:
+        return redirect("start_test_page")
 
-    if index > 0:
-        index -= 1
+    index -= 1
+
+    if index < 0:
+        index = 0
 
     request.session["index"] = index
 
-    qids = request.session["qids"]
+    qno = qids[index]
 
-    question = ExamInfo.objects.get(
-        qno=qids[index]
-    )
-    
-    print("PREVIOUS")
-    print(dict(request.session))
+    try:
+
+        question = ExamInfo.objects.get(
+            qno=qno
+        )
+
+    except ExamInfo.DoesNotExist:
+
+        return redirect("start_test_page")
 
     return render(
         request,
         "start_test.html",
-        {"question": question}
+        {
+            "question": question
+        }
     )
-
+    
 def End_Test(request):
     
     username = request.session.get("username")
     subject = request.session.get("subject")
-    score = request.session.get("score")
+    score = request.session.get("score", 0)
 
-    try:
-        user = UserData.objects.get(
-            username=username
-        )
+    print("Username:", username)
+    print("Subject:", subject)
+    print("Score:", score)
 
-        Result.objects.create(
-            username=user,
-            subject=subject,
-            marks=score
-        )
+    if username and subject:
 
-    except:
-        pass
+        try:
+            user = UserData.objects.get(username=username)
+
+            Result.objects.create(
+                username=user,
+                subject=subject,
+                marks=score
+            )
+
+        except UserData.DoesNotExist:
+            pass
+
+    # Clear exam session
+    request.session.pop("qids", None)
+    request.session.pop("index", None)
+    request.session.pop("score", None)
+    request.session.pop("subject", None)
 
     return render(
         request,
         "result/score.html",
         {
-            "finalscore": score,
+            "score": score,
             "subject": subject
         }
     )
@@ -498,9 +652,13 @@ def ScorePage(request):
     username = request.session.get("username")
 
     if not username:
+
         return render(
             request,
-            "result/score.html"
+            "result/score.html",
+            {
+                "msg": "Please login first."
+            }
         )
 
     try:
@@ -509,23 +667,30 @@ def ScorePage(request):
             username=username
         )
 
-        result = Result.objects.filter(
-            username=user
-        ).last()
+        result = (
+            Result.objects
+            .filter(username=user)
+            .order_by("-id")
+            .first()
+        )
 
         return render(
             request,
             "result/score.html",
-            {"result": result}
+            {
+                "result": result
+            }
         )
 
-    except:
+    except UserData.DoesNotExist:
+
         return render(
             request,
             "result/score.html",
-            {"msg": "No Result Found"}
+            {
+                "msg": "No Result Found"
+            }
         )
-
 
 # ---------------- RESULT ----------------
 
@@ -542,16 +707,9 @@ def LogoutUser(request):
 
 def ShowAllUsers(request):
     data = UserData.objects.all()
-    return render(request, "student/show_all_students.html", {"udata": data})
-
-def SubjectPage(request):
-    subjects = ExamInfo.objects.values_list(
-        'subject',
-        flat=True
-    ).distinct()
 
     return render(
         request,
-        "question/subject.html",
-        {"subjects": subjects}
+        "student/show_all_students.html",
+        {"udata": data}
     )

@@ -85,13 +85,13 @@
 
 <div class="container">
 
-    <a href="/Examapp/givemestudentcurd/" class="back">
+    <a href="{%url 'student_curd'%}" class="back">
         ← Student Operations
     </a>
 
     <h2>Add Student</h2>
 
-    <form method="GET" action="/Examapp/addstudent/">
+    <form method="GET" action="{%url 'add_user'%}">
 
         <label>Username</label>
         <input type="text"

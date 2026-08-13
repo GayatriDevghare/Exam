@@ -129,17 +129,14 @@
 
     <div class="btn-container">
 
-        <a href="/Examapp/" class="btn home-btn">
+        <a href="{%url 'home' %}" class="btn home-btn">
             🏠 Home
         </a>
 
-        <a href="/Examapp/subject/" class="btn test-btn">
+        <a href="{% url 'get_all_result_page' %}" class="btn test-btn">
             📝 Start Test
         </a>
 
-        <a href="/Examapp/getallresultpage/" class="btn refresh-btn">
-            🔄 Refresh Results
-        </a>
 
         <a href="javascript:history.back()" class="btn back-btn">
             ⬅ Back

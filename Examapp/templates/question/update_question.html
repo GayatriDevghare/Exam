@@ -71,23 +71,23 @@ h2{
     font-weight:bold;
     color:green;
 }
-```
+
 </style>
 
 <body style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA6-zjwuNu9Jvi-3WzXkm-oD6122-6Maj8hg&s'); background-repeat: no-repeat; background-size: cover;">
 
-    <nav style="margin-left: 30%; margin-top: 2%;">
-        <a href="/Examapp/giveaddquestion/">Add Question</a> &nbsp;&nbsp;
-        <a href="/Examapp/giveviewquestion/">View Question</a> &nbsp;&nbsp;
-        <a href="/Examapp/giveupdatequestion/">Update Question</a> &nbsp;&nbsp;
-        <a href="/Examapp/givedeletequestion/">Delete Question</a> &nbsp;&nbsp;
-        <a href="/Examapp/givemeshowallquestion/">Show All Questions</a> &nbsp;&nbsp;
-        <a href="/Examapp/">Home Page</a>
+    <nav>
+        <a href="{% url 'add_question_page' %}" >Add Question</a>
+        <a href="{% url 'view_question_page' %}">View Question</a>
+        <a href="{% url 'update_question_page' %}">Update Question</a>
+        <a href="{% url 'delete_question_page' %}">Delete Question</a>
+        <a href="{% url 'show_all_question_page' %}">Show All Questions</a>
+        <a href="{% url 'home' %}">Home Page</a>
     </nav>
 
     <hr>
 
-   ```html
+
 <form method="GET">
 
 <div class="container">
@@ -146,13 +146,13 @@ h2{
     <div class="button-container">
 
         <button type="submit"
-                formaction="/Examapp/viewquestion/"
+                formaction="{% url 'view_question'%}"
                 class="view-btn">
             🔍 View Question
         </button>
 
         <button type="submit"
-                formaction="/Examapp/updatequestion/"
+                formaction="{% url 'update_question' %}"
                 class="update-btn">
             ✏️ Update Question
         </button>
@@ -166,7 +166,7 @@ h2{
 </div>
 
 </form>
-```
+
 
 
 </body>

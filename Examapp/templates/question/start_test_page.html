@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Select Subject</title>
+
+    {% load static %}
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #87CEEB, #000080);
+        }
+
+        .container {
+            width: 450px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h2 {
+            color: #000080;
+            margin-bottom: 15px;
+        }
+
+        .welcome {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+            text-align: left;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #000080;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #000080;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #0033cc;
+        }
+
+        .home-link {
+            display: block;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #000080;
+            border: 2px solid #000080;
+        }
+
+        .home-link:hover {
+            background: #000080;
+            color: white;
+        }
+
+        .msg {
+            margin-top: 15px;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>📝 Online Examination System</h2>
+
+        <div class="welcome">
+            Welcome, {{ request.session.username|default:"Guest" }}
+        </div>
+
+        <form method="POST" action="{% url 'start_test' %}">
+
+            {% csrf_token %}
+
+            <label for="subject">
+                Select Subject
+            </label>
+
+            <select name="subject" id="subject" required>
+
+                <option value="">
+                    -- Choose Subject --
+                </option>
+
+                <option value="Math">
+                    Math
+                </option>
+
+                <option value="C">
+                    C
+                </option>
+
+                <option value="Python">
+                    Python
+                </option>
+
+            </select>
+
+            <button type="submit" class="btn">
+                🚀 Start Test
+            </button>
+
+        </form>
+
+        <a href="{% url 'home' %}" class="home-link">
+            🏠 Back to Home
+        </a>
+
+        {% if msg %}
+            <div class="msg">
+                {{ msg }}
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

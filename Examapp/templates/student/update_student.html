@@ -87,13 +87,13 @@
 
 <div class="container">
 
-    <a href="/Examapp/givemestudentcurd/" class="back">
+    <a href="{%url 'student_curd'%}" class="back">
         ← Student Operations
     </a>
 
     <h2>Update Student</h2>
 
-    <form method="GET" action="/Examapp/updatestudent/">
+    <form method="GET" action="{%url 'update_user'%}">
 
         <label>Username</label>
         <input type="text"
@@ -125,4 +125,4 @@
 
 </body>
 </html>
-```
+

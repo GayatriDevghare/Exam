@@ -100,23 +100,23 @@
     }
 
 </style>
-```
+
 
 </head>
 
 <body>
 
-```
+
 <div class="navbar">
-    <a href="/Examapp/givemeaddstudent/">➕ Add Student</a>
-    <a href="/Examapp/givemeviewstudent/">🔍 View Student</a>
-    <a href="/Examapp/givemeupdatestudent/">✏️ Update Student</a>
-    <a href="/Examapp/givemedeletestudent/">🗑 Delete Student</a>
-    <a href="/Examapp/showallstudent/">📋 Show All Students</a>
-    <a href="/Examapp/">🏠 Home</a>
+    <a href="{% url 'add_student_page'%}">➕ Add Student</a>
+    <a href="{% url 'view_student_page'%}">🔍 View Student</a>
+    <a href="{% url 'update_student_page'%}">✏️ Update Student</a>
+    <a href="{% url 'delete_student_page'%}">🗑 Delete Student</a>
+    <a href="{% url 'show_all_users'%}">📋 Show All Students</a>
+    <a href="{% url 'home'%}">🏠 Home</a>
 </div>
 
-<a href="/Examapp/givemestudentcurd/" class="back-btn">
+<a href="{%url 'student_curd'%}" class="back-btn">
     ← Student Operations
 </a>
 
@@ -136,8 +136,8 @@
         <td>{{ ud.username }}</td>
         <td>{{ ud.password }}</td>
         <td>
-            <a href="/Examapp/deleteusershowall/?username={{ ud.username }}"
-               class="delete-btn">
+            <a href="{% url 'show_all_users'%}?username={{ ud.username }}"
+                class="delete-btn">
                 Delete
             </a>
         </td>
@@ -153,7 +153,7 @@
 </div>
 
 {% endif %}
-```
+
 
 </body>
 
